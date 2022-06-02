@@ -1,0 +1,30 @@
+.header {
+  /* padding-right: 10px; */
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: rgb(161, 6, 6);
+}
+
+.gameName {
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  color: #21ecf3;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.singIn {
+  width: 65px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.singUp {
+  width: 125px;
+  height: 20px;
+  margin-right: 10px;
+}
