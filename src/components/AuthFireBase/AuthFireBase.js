@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
+  // signInWithEmailAndPassword,
+  // signOut,
   getAuth,
-  onAuthStateChanged,
+  // onAuthStateChanged,
 } from 'firebase/auth';
 import {
   getFirestore,
-  updateDoc,
-  arrayUnion,
-  doc,
-  setDoc,
-  onSnapshot,
+  // updateDoc,
+  // arrayUnion,
+  // doc,
+  // setDoc,
+  // onSnapshot,
 } from 'firebase/firestore';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCjURkTZP-hYQ003_umy1baP9wor83vepw',
@@ -34,9 +34,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const auth = getAuth();
-const db = getFirestore(app);
+// const db = getFirestore(app);
 
 export const authFireBase = (
   email,
