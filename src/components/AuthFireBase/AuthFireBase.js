@@ -8,14 +8,14 @@ import {
   getAuth,
   // onAuthStateChanged,
 } from 'firebase/auth';
-// import {
-//   // getFirestore,
-//   // updateDoc,
-//   // arrayUnion,
-//   // doc,
-//   // setDoc,
-//   // onSnapshot,
-// } from 'firebase/firestore';
+import {
+  getFirestore,
+  // updateDoc,
+  // arrayUnion,
+  doc,
+  setDoc,
+  // onSnapshot,
+} from 'firebase/firestore';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -36,7 +36,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth();
-// const db = getFirestore(app);
+const db = getFirestore(app);
 
 export const authFireBase = (
   email,
@@ -51,11 +51,11 @@ export const authFireBase = (
     createUserWithEmailAndPassword(auth, email, password)
       .then(e => {
         Report.success(`Успішно зареєстрований`, ``, `Ok`);
-        // setDoc(doc(db, 'users', e.user.uid), {
-        //   watched: [],
-        //   queue: [],
-        //   role: '',
-        // });
+        setDoc(doc(db, 'users', e.user.uid), {
+          watched: [],
+          queue: [],
+          role: '',
+        });
       })
       .catch(error => {
         Report.failure(`Помилка`, ` ${error.message}`, `Ok`);

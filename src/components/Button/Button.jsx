@@ -1,4 +1,4 @@
-import style from './Button.module.css';
+// import style from './Button.module.css';
 
 export const Button = ({ name, text, onClick }) => {
   return (
