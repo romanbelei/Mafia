@@ -3,9 +3,10 @@ import { useState } from 'react';
 import style from './LoginForm.module.css';
 import { authFireBase } from '../AuthFireBase';
 
-export const LoginForm = ({ text, onClickClose }) => {
+export const LoginForm = ({ text, onClickClose, method }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [submitUp, setSubmitUp] = useState(false);
 
   //   const reset = () => {
@@ -21,6 +22,8 @@ export const LoginForm = ({ text, onClickClose }) => {
         return setEmail(e.currentTarget.value);
       case 'password':
         return setPassword(e.currentTarget.value);
+      case 'name':
+        return setName(e.currentTarget.value);
       default:
         return;
     }
@@ -36,10 +39,9 @@ export const LoginForm = ({ text, onClickClose }) => {
     setSubmitUp(false);
   };
   if (submitUp && email && password) {
-    console.log(email);
     submitOff();
-    // onClickClose();
-    authFireBase(email, password, 'up');
+    onClickClose();
+    authFireBase(name, email, password, method);
   }
   return (
     <>
@@ -62,6 +64,16 @@ export const LoginForm = ({ text, onClickClose }) => {
           >
             <LogoIcon />
           </button>
+          <input
+            className={style.registerFormInput}
+            type="name"
+            name="name"
+            value={name}
+            id="registerName"
+            placeholder="Name"
+            onChange={handleChange}
+            required
+          />
           <input
             className={style.registerFormInput}
             type="email"

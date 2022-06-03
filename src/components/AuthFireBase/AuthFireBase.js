@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 // import { getAnalytics } from 'firebase/analytics';
 import {
   createUserWithEmailAndPassword,
-  // signInWithEmailAndPassword,
+  signInWithEmailAndPassword,
   // signOut,
   getAuth,
   // onAuthStateChanged,
@@ -18,7 +18,7 @@ import {
 } from 'firebase/firestore';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCjURkTZP-hYQ003_umy1baP9wor83vepw',
@@ -39,32 +39,38 @@ const auth = getAuth();
 const db = getFirestore(app);
 
 export const authFireBase = (
+  name,
   email,
   password,
   // closeForm,
-  metod
+  method
   // submitOff,
 ) => {
-  console.log(`${email} ${password} ${metod}`);
-  if ((metod = 'up')) {
-    console.log(email);
+  // console.log(`${email} ${password} ${method}`);
+  if (method === 'up') {
+    // console.log(email);
     createUserWithEmailAndPassword(auth, email, password)
       .then(e => {
         Report.success(`Успішно зареєстрований`, ``, `Ok`);
+        console.log(e.user.uid);
         setDoc(doc(db, 'users', e.user.uid), {
-          watched: [],
-          queue: [],
+          admin: 'false',
+          name: name,
           role: '',
         });
       })
       .catch(error => {
         Report.failure(`Помилка`, ` ${error.message}`, `Ok`);
       });
-    // .finally(() => {
-    //   submitOff();
-    //   closeForm();
-    // }
-    // );
+  }
+  if (method === 'in') {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(e => {
+        Notify.success(`Привіт`);
+
+        // refs.signInForm.classList.toggle('is-hidden');
+      })
+      .catch(error => Report.failure(`Помилка`, ` ${error.message}`, `Ok`));
   }
 
   // else {
@@ -78,7 +84,7 @@ export const authFireBase = (
 
   // onAuthStateChanged(auth, user => {
   //   if (user !== null) {
-  //     const userId = user.uid;
+  //     // const userId = user.uid;
   //     // console.log(userId);
   //   }
   //   setDoc(doc(db, 'users', 'pfObHv2EuSQpv8aY9W42xT5Rie82'), {

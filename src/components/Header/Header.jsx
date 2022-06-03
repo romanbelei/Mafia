@@ -32,10 +32,14 @@ export function Header() {
         />
       </header>
       {modalLoginUp && (
-        <LoginForm onClickClose={onClickCloseUp} text="Зареєструватись" />
+        <LoginForm
+          onClickClose={onClickCloseUp}
+          text="Зареєструватись"
+          method="up"
+        />
       )}
       {modalLoginIn && (
-        <LoginForm onClickClose={onClickCloseIn} text="Bвійти" />
+        <LoginForm onClickClose={onClickCloseIn} text="Bвійти" method="in" />
       )}
     </>
   );
